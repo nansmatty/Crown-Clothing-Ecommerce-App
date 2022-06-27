@@ -1,6 +1,6 @@
 .category-container {
 	min-width: 30%;
-	height: 240px;
+	height: 400px;
 	flex: 1 1 auto;
 	display: flex;
 	align-items: center;
@@ -54,14 +54,14 @@
 		position: absolute;
 
 		h2 {
-			font-weight: bold;
+			font-weight: bolder;
 			margin: 0 6px 0;
 			font-size: 22px;
 			color: #4a4a4a;
 		}
 
 		p {
-			font-weight: lighter;
+			font-weight: 500;
 			font-size: 16px;
 		}
 	}
