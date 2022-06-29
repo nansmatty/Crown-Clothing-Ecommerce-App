@@ -1,4 +1,5 @@
 import {
+	auth,
 	createUserDocumentFromAuth,
 	signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils';
