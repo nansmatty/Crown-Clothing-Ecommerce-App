@@ -40,13 +40,7 @@ const removeCartItem = (cartItems, productToRemove) => {
 };
 
 const deleteCartItem = (cartItems, itemToRemove) => {
-	const existingCartItem = cartItems.find(
-		(cartItem) => cartItem.id === itemToRemove.id
-	);
-
-	if (existingCartItem) {
-		return cartItems.filter((cartItem) => cartItem.id !== itemToRemove.id);
-	}
+	return cartItems.filter((cartItem) => cartItem.id !== itemToRemove.id);
 };
 
 export const CartContext = createContext({
