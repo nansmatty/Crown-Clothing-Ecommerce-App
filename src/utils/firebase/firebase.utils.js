@@ -2,7 +2,6 @@
 import { initializeApp } from 'firebase/app';
 import {
 	getAuth,
-	signInWithRedirect,
 	signInWithPopup,
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
@@ -18,6 +17,8 @@ import {
 	setDoc,
 	collection,
 	writeBatch,
+	query,
+	getDocs,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -52,6 +53,22 @@ export const addCollectionAndDocuments = async (
 
 	await batch.commit();
 	console.log('done');
+};
+
+export const getCategoriesAndDocument = async () => {
+	const collectionRef = collection(db, 'categories');
+
+	const q = query(collectionRef);
+
+	const querySnapshot = await getDocs(q);
+
+	const categoryMap = querySnapshot.docs.reduce((acc, docsSnapshot) => {
+		const { title, items } = docsSnapshot.data();
+		acc[title.toLowerCase()] = items;
+		return acc;
+	}, {});
+
+	return categoryMap;
 };
 
 const googleProvider = new GoogleAuthProvider();
