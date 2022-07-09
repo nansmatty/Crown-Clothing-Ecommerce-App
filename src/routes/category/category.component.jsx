@@ -17,7 +17,7 @@ const Category = () => {
 	return (
 		<>
 			<CategoryTitle>{category}</CategoryTitle>
-			<CategoryContainer className='category-container'>
+			<CategoryContainer>
 				{products?.map((product) => (
 					<ProductCard key={product.id} product={product} />
 				))}
