@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 export const CheckoutContainer = styled.div`
 	width: 55%;
 	min-height: 90vh;
@@ -18,6 +20,10 @@ export const CheckoutHeader = styled.div`
 export const HeaderBlock = styled.div`
 	text-transform: capitalize;
 	width: 23%;
+
+	&:last-child {
+		width: 8%;
+	}
 `;
 
 export const CheckoutTotal = styled.span`
@@ -25,7 +31,3 @@ export const CheckoutTotal = styled.span`
 	margin-left: auto;
 	font-size: 36px;
 `;
-
-//  &:last-child {
-//     width: 8%;
-//   }
