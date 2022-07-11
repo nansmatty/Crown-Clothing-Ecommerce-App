@@ -7,6 +7,7 @@ import {
 	ImageContainer,
 	Quantity,
 	RemoveButton,
+	Value,
 } from './checkout-item.styles';
 
 const CheckoutItem = ({ cartItem }) => {
@@ -27,7 +28,7 @@ const CheckoutItem = ({ cartItem }) => {
 			<BaseSpan>{name}</BaseSpan>
 			<Quantity>
 				<Arrow onClick={decreaseItemCart}>&#10094;</Arrow>
-				<span className='value'>{quantity}</span>
+				<Value>{quantity}</Value>
 				<Arrow onClick={increaseItemCart}>&#10095;</Arrow>
 			</Quantity>
 			<BaseSpan>${price}</BaseSpan>
