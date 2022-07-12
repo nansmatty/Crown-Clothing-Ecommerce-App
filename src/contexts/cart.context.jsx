@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+
 import { createContext, useReducer } from 'react';
 import { createAction } from '../utils/reducer/reducer.utils';
 
@@ -44,7 +46,7 @@ const deleteCartItem = (cartItems, itemToRemove) => {
 	return cartItems.filter((cartItem) => cartItem.id !== itemToRemove.id);
 };
 
-export const CartContext = createContext({
+const CartContext = createContext({
 	isCartOpen: false,
 	setIsCartOpen: () => {},
 	cartItems: [],
@@ -87,7 +89,7 @@ const cartReducer = (state, action) => {
 	}
 };
 
-export const CartProvider = ({ children }) => {
+const CartProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
 
 	const { cartItems, cartCount, cartTotal, isCartOpen } = state;
