@@ -5,12 +5,12 @@ import {
 } from '../utils/firebase/firebase.utils';
 import { createAction } from '../utils/reducer/reducer.utils';
 
-export const UserContext = createContext({
+const UserContext = createContext({
 	currentUser: null,
 	setCurrentUser: () => null,
 });
 
-export const USER_ACTIONS_TYPES = {
+const USER_ACTIONS_TYPES = {
 	SET_CURRENT_USER: 'SET_CURRENT_USER',
 };
 
@@ -32,7 +32,7 @@ const INITIAL_STATE = {
 	currentUser: null,
 };
 
-export const UserProvider = ({ children }) => {
+const UserProvider = ({ children }) => {
 	const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
 
 	const setCurrentUser = (user) => {

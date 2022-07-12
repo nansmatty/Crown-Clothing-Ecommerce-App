@@ -62,7 +62,7 @@ const INITIAL_STATE = {
 	cartTotal: 0,
 };
 
-export const CART_ACTIONS_TYPES = {
+const CART_ACTIONS_TYPES = {
 	SET_CART_ITEMS: 'SET_CART_ITEMS',
 	SET_IS_CART_OPEN: 'SET_IS_CART_OPEN',
 };
