@@ -7,13 +7,13 @@ import { CategoryContainer, CategoryTitle } from './category.styles.jsx';
 
 const Category = () => {
 	const { category } = useParams();
-	const categoriesMap = useSelector(selectCategoriesMap);
+	const categories = useSelector(selectCategoriesMap);
 
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
-		setProducts(categoriesMap[category]);
-	}, [category, categoriesMap]);
+		setProducts(categories[category]);
+	}, [category, categories]);
 
 	return (
 		<>
