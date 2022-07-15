@@ -4,6 +4,11 @@ const selectCategoryReducer = (state) => state.categories;
 
 // to understand this login watch  the 162.reselect library video from udemy react course by ZTM
 
+export const selectCategoriesIsLoading = createSelector(
+	[selectCategoryReducer],
+	(categories) => categories.isLoading
+);
+
 export const selectCategories = createSelector(
 	[selectCategoryReducer],
 	(categories) => categories.categories
