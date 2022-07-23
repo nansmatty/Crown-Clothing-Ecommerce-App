@@ -1,6 +1,8 @@
 import { createSelector } from 'reselect';
+import { CategoriesState } from './category.reducer';
+import { CategoryMap } from './category.types';
 
-const selectCategoryReducer = (state) => state.categories;
+const selectCategoryReducer = (state: any): CategoriesState => state.categories;
 
 // to understand this login watch  the 162.reselect library video from udemy react course by ZTM
 
@@ -16,12 +18,12 @@ export const selectCategories = createSelector(
 
 export const selectCategoriesMap = createSelector(
 	[selectCategories],
-	(categories) =>
+	(categories): CategoryMap =>
 		categories.reduce((acc, category) => {
 			const { title, items } = category;
 			acc[title.toLowerCase()] = items;
 			return acc;
-		}, {})
+		}, {} as CategoryMap)
 );
 
 //Previous code
