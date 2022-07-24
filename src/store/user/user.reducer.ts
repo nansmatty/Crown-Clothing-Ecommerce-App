@@ -1,12 +1,19 @@
+import { AnyAction } from 'redux';
 import { USER_ACTIONS_TYPES } from './user.types';
 
-const INITIAL_STATE = {
+export type UserState = {
+	readonly currentUser: {} | null;
+	readonly isLoading: boolean;
+	readonly error: Error | null;
+};
+
+const INITIAL_STATE: UserState = {
 	currentUser: null,
 	isLoading: false,
 	error: null,
 };
 
-export const userReducer = (state = INITIAL_STATE, action) => {
+export const userReducer = (state = INITIAL_STATE, action: AnyAction) => {
 	const { type, payload } = action;
 
 	switch (type) {
