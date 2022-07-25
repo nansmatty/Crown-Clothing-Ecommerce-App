@@ -1,8 +1,10 @@
 import { createSelector } from 'reselect';
 import { CategoriesState } from './category.reducer';
 import { CategoryMap } from './category.types';
+import { RootState } from '../store';
 
-const selectCategoryReducer = (state: any): CategoriesState => state.categories;
+const selectCategoryReducer = (state: RootState): CategoriesState =>
+	state.categories;
 
 // to understand this login watch  the 162.reselect library video from udemy react course by ZTM
 
