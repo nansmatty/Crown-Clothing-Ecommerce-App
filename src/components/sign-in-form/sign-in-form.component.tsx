@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
 	emailSignInStart,
@@ -13,7 +13,7 @@ const defaultFormFields = {
 	password: '',
 };
 
-const SignIn = () => {
+const SignIn: React.FC = () => {
 	const dispatch = useDispatch();
 	const [formFields, setFormFields] = useState(defaultFormFields);
 
@@ -26,28 +26,18 @@ const SignIn = () => {
 	const signInWithGoogle = async () => {
 		dispatch(googleSignInStart());
 	};
-
-	const handleChange = (event) => {
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		setFormFields({ ...formFields, [name]: value });
 	};
 
-	const submitHandler = async (event) => {
+	const submitHandler = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		try {
 			dispatch(emailSignInStart(email, password));
 			resetFormFields();
 		} catch (error) {
-			switch (error.code) {
-				case 'auth/wrong-password':
-					alert('incorrect password for email');
-					break;
-				case 'auth/user-not-found':
-					alert('no user asoociated with this email');
-					break;
-				default:
-					console.log(error);
-			}
+			console.log('user sign in failed', error);
 		}
 	};
 
