@@ -10,6 +10,7 @@ import {
 	onAuthStateChanged,
 	User,
 	NextOrObserver,
+	UserCredential,
 } from 'firebase/auth';
 
 import {
@@ -40,7 +41,16 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+	prompt: 'select_account',
+});
+
+export const auth = getAuth();
+export const signInWithGooglePopup = () =>
+	signInWithPopup(auth, googleProvider);
 
 export const db = getFirestore();
 
@@ -76,28 +86,19 @@ export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
 	);
 };
 
-const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({
-	prompt: 'select_account',
-});
-
-export const auth = getAuth();
-export const signInWithGooglePopup = () =>
-	signInWithPopup(auth, googleProvider);
-
 export type AdditionalInformation = {
 	displayName?: string;
 };
 
 export type UserData = {
-	createAt: Date;
+	createdAt: Date;
 	displayName: string;
 	email: string;
 };
 
 export const createUserDocumentFromAuth = async (
 	userAuth: User,
-	additionalInformation: AdditionalInformation
+	additionalInformation: AdditionalInformation = {} as AdditionalInformation
 ): Promise<void | QueryDocumentSnapshot<UserData>> => {
 	if (!userAuth) return;
 
@@ -140,12 +141,12 @@ export const createAuthUserWithEmailAndPassword = async (
 export const signInAuthUserWithEmailAndPassword = async (
 	email: string,
 	password: string
-) => {
+): Promise<UserCredential | void> => {
 	if (!email || !password) return;
 	return await signInWithEmailAndPassword(auth, email, password);
 };
 
-export const signOutUser = async () => await signOut(auth);
+export const signOutUser = async (): Promise<void> => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => {
 	onAuthStateChanged(auth, callback);
