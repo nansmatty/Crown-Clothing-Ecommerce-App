@@ -1,15 +1,18 @@
-import { FormEvent, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, FormEvent } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { BUTTON_TYPES_CLASSES } from '../button/button.component';
-import {
-	FormContainer,
-	PaymentButton,
-	PaymentFormContainer,
-} from './payment-form.styles';
+import { StripeCardElement } from '@stripe/stripe-js';
+import { useSelector } from 'react-redux';
+
 import { selectCartTotal } from '../../store/cart/cart.selector';
 import { selectCurrentUser } from '../../store/user/user.selector';
-import { StripeCardElement } from '@stripe/stripe-js';
+
+import { BUTTON_TYPES_CLASSES } from '../button/button.component';
+
+import {
+	PaymentFormContainer,
+	FormContainer,
+	PaymentButton,
+} from './payment-form.styles';
 
 const ifValidCardElement = (
 	card: StripeCardElement | null
@@ -18,14 +21,12 @@ const ifValidCardElement = (
 const PaymentForm = () => {
 	const stripe = useStripe();
 	const elements = useElements();
-
 	const amount = useSelector(selectCartTotal);
 	const currentUser = useSelector(selectCurrentUser);
-
 	const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
-	const paymentHandler = async (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
+	const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 
 		if (!stripe || !elements) {
 			return;
@@ -34,7 +35,7 @@ const PaymentForm = () => {
 		setIsProcessingPayment(true);
 
 		const response = await fetch('/.netlify/functions/create-payment-intent', {
-			method: 'POST',
+			method: 'post',
 			headers: {
 				'Content-Type': 'application/json',
 			},
