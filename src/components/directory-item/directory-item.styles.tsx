@@ -16,6 +16,7 @@ export const Body = styled.div`
 	height: 90px;
 	padding: 0 25px;
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -23,23 +24,45 @@ export const Body = styled.div`
 	background-color: white;
 	opacity: 0.7;
 	position: absolute;
+	color: black !important;
 
 	h2 {
 		font-weight: bolder;
 		margin: 0 6px 0;
 		font-size: 22px;
 		color: #4a4a4a;
+
+		@media screen and (max-width: 800px) {
+			font-size: 16px;
+			color: black !important;
+		}
 	}
 
 	p {
 		font-weight: 500;
 		font-size: 16px;
+
+		@media screen and (max-width: 800px) {
+			font-size: 10px;
+			border: 1px solid black;
+			font-weight: bold;
+			padding: 5px;
+			border-radius: 10px;
+			background-color: #e6425e;
+			color: black !important;
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		opacity: 0.8;
+		border-radius: 10px;
 	}
 `;
 
 export const DirectoryItemContainer = styled.div`
 	min-width: 30%;
 	height: 400px;
+	color: black !important;
 	flex: 1 1 auto;
 	display: flex;
 	align-items: center;
@@ -69,7 +92,7 @@ export const DirectoryItemContainer = styled.div`
 		margin-left: 7.5px;
 	}
 
-	@media screen and (max-width: 800px) {
+	media screen and (max-width: 800px) {
 		height: 200px;
 	}
 `;

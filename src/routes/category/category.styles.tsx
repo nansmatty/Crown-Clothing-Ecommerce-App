@@ -17,4 +17,9 @@ export const CategoryTitle = styled.h2`
 	text-align: center;
 	text-transform: capitalize;
 	letter-spacing: 2px;
+
+	@media screen and (max-width: 1024px) {
+		font-size: 30px;
+		letter-spacing: 1.5px;
+	}
 `;
